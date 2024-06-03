@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgres-minio:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - project_network
+
+networks:
+  project_network:
+    driver: bridge
+
+volumes:
+  data:
+    driver: local

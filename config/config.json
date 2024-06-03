@@ -1,0 +1,32 @@
+{
+  "pipeline": [
+    {
+      "source": {
+        "name": "Fonte",
+        "connection_params": {
+          "host": "localhost",
+          "database": "postgres",
+          "user": "postgres",
+          "password": "postgres"
+        },
+        "query_file": "minha_query.sql"
+      },
+      "transform": {
+        "name": "Transformação"
+      },
+      "sink": {
+        "name": "PostgreSQL",
+        "type": "postgres",
+        "connection_params": {
+          "host": "localhost",
+          "database": "postgres",
+          "user": "postgres",
+          "password": "postgres"
+        },
+        "schema": "analytics",
+        "table": "destination_table",
+        "columns": ["column1", "column2"]
+      }
+    }
+  ]
+}
