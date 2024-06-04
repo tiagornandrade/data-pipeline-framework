@@ -1,32 +1,31 @@
 {
   "pipeline": [
     {
-      "source": {
-        "name": "Fonte",
-        "connection_params": {
-          "host": "localhost",
-          "database": "postgres",
-          "user": "postgres",
-          "password": "postgres"
-        },
-        "query_file": "minha_query.sql"
-      },
-      "transform": {
-        "name": "Transformação"
-      },
-      "sink": {
-        "name": "PostgreSQL",
-        "type": "postgres",
-        "connection_params": {
-          "host": "localhost",
-          "database": "postgres",
-          "user": "postgres",
-          "password": "postgres"
-        },
-        "schema": "analytics",
-        "table": "destination_table",
-        "columns": ["column1", "column2"]
-      }
+      "pipe_type": "postgres_stage_to_postgres_dim",
+      "type": "dim",
+      "stage_schema": "public",
+      "stage_table": "stg_user",
+      "target_schema": "analytics",
+      "target_table": "dim_user",
+      "conflict_columns": ["id"]
+    },
+    {
+      "pipe_type": "postgres_stage_to_postgres_dim",
+      "type": "dim",
+      "stage_schema": "public",
+      "stage_table": "stg_product",
+      "target_schema": "analytics",
+      "target_table": "dim_product",
+      "conflict_columns": ["id"]
+    },
+    {
+      "pipe_type": "postgres_stage_to_postgres_dim",
+      "type": "dim",
+      "stage_schema": "public",
+      "stage_table": "stg_location",
+      "target_schema": "analytics",
+      "target_table": "dim_location",
+      "conflict_columns": ["id"]
     }
   ]
 }
