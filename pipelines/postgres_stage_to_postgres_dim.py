@@ -1,12 +1,12 @@
-from core.operators.source import data_pipeline
+from core.operators.pipeline import data_pipeline
 
 
 db_params = {
-    'host': 'localhost',
-    'database': 'postgres',
-    'user': 'postgres',
-    'password': 'postgres'
+    "host": "localhost",
+    "database": "postgres",
+    "user": "postgres",
+    "password": "postgres",
 }
 
-config_file = '../config/config.json'
+config_file = "../config/config.json"
 data_pipeline(config_file, db_params)
