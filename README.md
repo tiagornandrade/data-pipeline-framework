@@ -27,8 +27,8 @@ pip install data-pipeline-framework
 Aqui está um exemplo simples de como criar e executar um pipeline de dados usando este framework:
 
 ```python
-from data_pipeline.pipeline import Pipeline
-from data_pipeline.stages import SourceStage, TransformStage, SinkStage
+from core.utils.create_pipeline import Pipeline
+from core.operators import SourceStage, TransformStage, SinkStage
 
 # Definindo estágios do pipeline
 source = SourceStage(...)

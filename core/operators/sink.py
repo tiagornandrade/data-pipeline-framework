@@ -2,7 +2,7 @@ import psycopg2
 from .stage import Stage
 
 
-class PostgresSinkStage(Stage):
+class PostgresSink(Stage):
     def __init__(self, name, connection_params, schema, table, columns):
         super().__init__(name)
         self.connection_params = connection_params

@@ -1,6 +1,6 @@
 import json
-from data_pipeline.pipeline import Pipeline
-from data_pipeline.stages import SourceStage, TransformStage, SinkStage
+from core.utils.create_pipeline import Pipeline
+from core.operators import SourceStage, TransformStage, SinkStage
 
 
 def load_config(config_file):
