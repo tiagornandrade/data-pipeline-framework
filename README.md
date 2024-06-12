@@ -27,19 +27,34 @@ pip install data-pipeline-framework
 Aqui está um exemplo simples de como criar e executar um pipeline de dados usando este framework:
 
 ```python
-from core.utils.create_pipeline import Pipeline
-from core.operators import SourceStage, TransformStage, SinkStage
+from src.pipeline import Pipeline
+from src.operators import StageOperator, DimensionOperator
+from src.db_manager import DBManager
 
-# Definindo estágios do pipeline
-source = SourceStage(...)
-transform = TransformStage(...)
-sink = SinkStage(...)
+# Configuração do DBManager
+DB_CONFIG = {
+    'host': 'localhost',
+    'dbname': 'my_database',
+    'user': 'username',
+    'password': 'password'
+}
 
-# Criando o pipeline
-pipeline = Pipeline(source, transform, sink)
+def create_db_manager() -> DBManager:
+    """Creates an instance of the DBManager."""
+    return DBManager(**DB_CONFIG)
 
-# Executando o pipeline
-pipeline.run()
+def create_user_pipeline(db_manager: DBManager) -> Pipeline:
+    """Creates the user pipeline."""
+    stage_op = StageOperator(table_name="stg_user", db_manager=db_manager)
+    dim_op = DimensionOperator(table_name="dim_user", db_manager=db_manager)
+    return Pipeline(name="UserPipeline", operators=[stage_op, dim_op])
+
+# Criando o DBManager
+db_manager = create_db_manager()
+
+# Criando e executando o pipeline
+user_pipeline = create_user_pipeline(db_manager)
+user_pipeline.execute()
 ```
 
 Consulte a documentação completa para mais informações sobre como usar o framework.
