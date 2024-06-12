@@ -1,2 +1,4 @@
-.idea
-/core/operators/__pycache__/*.pyc
+/.env
+/.idea
+/src/__pycache__/
+/tests/__pycache__/

@@ -12,6 +12,8 @@ services:
       - "5432:5432"
     networks:
       - project_network
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
 
 networks:
   project_network:
